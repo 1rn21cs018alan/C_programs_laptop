@@ -1,0 +1,69 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define MAX_SIZE 5
+typedef struct Employee
+{
+    char Ename[20];
+    int Eid;
+}E;
+void push(E s[MAX_SIZE],int *top,E *e1);
+void pop(E s[MAX_SIZE],int *top);
+void display(E s[MAX_SIZE],int *top); 
+int main()
+{
+    E s[MAX_SIZE],e1;
+    int top=-1,ch;
+    while(1)
+    {
+        printf("Press 1.Push,2.Pop,3.Display\n");
+        printf("Enter your choice\n");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1:
+                printf("Enter Employee details\n");
+                scanf("%s%d",&e1.Ename,&e1.Eid);
+                push(s,&top,&e1);
+                break;
+            case 2:pop(s,&top);
+                break;
+            case 3:display(s,&top);
+                break; 
+            default:exit(0);
+        }
+    }  
+    return 0;
+}
+void push(E s[MAX_SIZE],int *top,E *e1)
+{
+    if(*top==MAX_SIZE-1)
+    {
+      printf("Overflow condition\n");
+    }
+    else
+    {
+        (*top)++;
+        s[*top].Eid=(*e1).Eid;
+        strcpy(s[*top].Ename,(*e1).Ename);
+    }
+}
+
+void pop(E s[MAX_SIZE],int *top)
+{
+    if(*top==-1)
+    {
+        printf("Underflow condition\n");
+        return;
+    }
+    (*top)--;
+}
+ 
+void display(E s[MAX_SIZE],int *top)
+{
+    int i;
+    for(i=top;i>=0;i++)      
+    {
+        printf("\n%s\t%d",s[i].Ename,s[i].Eid);
+    }
+}
